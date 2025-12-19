@@ -1,10 +1,11 @@
 
+import WelcomeBanner from './_components/welcomeBanner';
 const page = () => {
   return (
 
     <>
     
-    hehdhjsks
+  <WelcomeBanner/>
   
     </>
   )
