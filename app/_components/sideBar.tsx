@@ -17,7 +17,7 @@ import {
 const items = [
   {
     title: "Workspace",
-    url: "#",
+    url: "",
     icon: Home,
   },
   {
