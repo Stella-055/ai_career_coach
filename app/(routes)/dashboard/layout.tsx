@@ -4,9 +4,12 @@ import { AppSidebar } from '@/app/_components/sideBar';
  
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider>
+    <SidebarProvider 
+     style={{
+      
+    }}>
       <AppSidebar />
-      <main className="flex ">
+      <main style={{ flexGrow: 1, padding: '1rem' }}>
         <SidebarTrigger />
         {children}
       </main>

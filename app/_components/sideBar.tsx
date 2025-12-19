@@ -1,6 +1,7 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
-
+import { Calendar, Home, SquarePlus, Receipt, UserPen } from "lucide-react"
+import Image from 'next/image';
 import {
+
   Sidebar,
   SidebarContent,
   SidebarGroup,
@@ -9,34 +10,35 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+    SidebarFooter,
 } from "@/components/ui/sidebar"
 
 // Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Workspace",
     url: "#",
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "AI Tools",
     url: "#",
-    icon: Inbox,
+    icon: SquarePlus,
   },
   {
-    title: "Calendar",
+    title: "My History",
     url: "#",
     icon: Calendar,
   },
   {
-    title: "Search",
+    title: "Billing",
     url: "#",
-    icon: Search,
+    icon: Receipt,
   },
   {
-    title: "Settings",
+    title: "Profile",
     url: "#",
-    icon: Settings,
+    icon: UserPen,
   },
 ]
 
@@ -45,13 +47,20 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel style={{marginTop:"1rem",marginBottom:"1rem"}}> 
+            <Image
+              src="/pic.png"
+              alt="Logo"
+              width={150}
+              height={50}
+            />
+            </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu  >
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem  key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <a style={{fontSize:"1rem"}} href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
                     </a>
@@ -62,6 +71,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter />
     </Sidebar>
   )
 }
