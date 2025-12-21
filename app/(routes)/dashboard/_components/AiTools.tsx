@@ -44,9 +44,10 @@ const AiTools = () => {
     <div className='p-5 bg-white rounded-lg shadow-md mx-6 mt-6'>
       <h2 className=' font-bold'>Available Ai Tools</h2>
       <p>Start building the start of your career with these exclusive tools</p>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
      { aitools.map((tool,index)=>(
 
-      <div>
+      <div className=' p-4 border rounded-lg flex flex-col items-center text-center space-y-2' key={index}>
 <Image   
 src={tool.icon}
 alt={tool.name}
@@ -57,11 +58,11 @@ height={50}
 
 <h3 className=' font-semibold'>{tool.name}</h3>
 <p>{tool.desc}</p>
-<Button variant={"outline"} className='text-black'>{tool.button}</Button>
+<Button variant={"secondary"} className='text-black'>{tool.button}</Button>
 
       </div>
      ))}
-
+</div>
     </div>
   )
 }
