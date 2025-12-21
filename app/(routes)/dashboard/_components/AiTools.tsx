@@ -1,8 +1,7 @@
- "use client";
- import React from 'react';
- import { useRef } from 'react';
+
  import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link'; 
 const aitools=[
 
 
@@ -58,7 +57,12 @@ height={50}
 
 <h3 className=' font-semibold'>{tool.name}</h3>
 <p>{tool.desc}</p>
-<Button variant={"secondary"} className='text-black'>{tool.button}</Button>
+<Button variant={"secondary"}  className='text-black' asChild>
+      <Link href={tool.path}>
+      {tool.button}
+      </Link>
+    </Button>
+
 
       </div>
      ))}
