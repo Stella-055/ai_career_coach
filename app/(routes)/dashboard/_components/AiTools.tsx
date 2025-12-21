@@ -1,4 +1,9 @@
- const aitools=[
+ "use client";
+ import React from 'react';
+ import { useRef } from 'react';
+ import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+const aitools=[
 
 
     {
@@ -32,12 +37,31 @@
  ]
 
 const AiTools = () => {
+  
+  
+  
   return (
     <div className='p-5 bg-white rounded-lg shadow-md mx-6 mt-6'>
       <h2 className=' font-bold'>Available Ai Tools</h2>
       <p>Start building the start of your career with these exclusive tools</p>
+     { aitools.map((tool,index)=>(
 
-      
+      <div>
+<Image   
+src={tool.icon}
+alt={tool.name}
+width={50}
+height={50}
+
+/>
+
+<h3 className=' font-semibold'>{tool.name}</h3>
+<p>{tool.desc}</p>
+<Button variant={"outline"} className='text-black'>{tool.button}</Button>
+
+      </div>
+     ))}
+
     </div>
   )
 }
