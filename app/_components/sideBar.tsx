@@ -17,27 +17,27 @@ import {
 const items = [
   {
     title: "Workspace",
-    url: "",
+    url: "/dashboard",
     icon: Home,
   },
   {
     title: "AI Tools",
-    url: "#",
+    url: "/dashboard/ai-tools",
     icon: SquarePlus,
   },
   {
     title: "My History",
-    url: "#",
+    url: "/dashboard/History",
     icon: Calendar,
   },
   {
     title: "Billing",
-    url: "#",
+    url: "/dashboard/billing",
     icon: Receipt,
   },
   {
     title: "Profile",
-    url: "#",
+    url: "/dashboard/profile",
     icon: UserPen,
   },
 ]

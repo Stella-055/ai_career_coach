@@ -6,6 +6,7 @@ const PrevHistory = () => {
     <div className='p-5 bg-white rounded-lg shadow-md mx-6 mt-6'>
         <h3 className="font-bold">Previous History</h3>
         <p>What Your previously work on, You can find here</p>
+        <div className="mt-4 flex justify-center items-center">
         <div className='  w-60 p-4 border rounded-lg flex flex-col items-center text-center space-y-2' >
 <Image   
 src="/pic.png"
@@ -22,7 +23,7 @@ height={50}
 
 
       </div>
-      
+      </div>
     </div>
   )
 }
