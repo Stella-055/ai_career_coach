@@ -1,5 +1,6 @@
 
 import AiTools from './_components/AiTools';
+import PrevHistory from './_components/PrevHistory';
 import WelcomeBanner from './_components/welcomeBanner';
 const page = () => {
   return (
@@ -8,7 +9,7 @@ const page = () => {
     
   <WelcomeBanner/>
   <AiTools/>
-  
+  <PrevHistory/>
     </>
   )
 }
