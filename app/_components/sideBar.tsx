@@ -44,7 +44,12 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <Sidebar className="relative  ">
+    <Sidebar className="
+    sticky top-0
+    h-screen
+    shrink-0
+    border-r
+  ">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel style={{marginTop:"1rem",marginBottom:"1rem"}}> 

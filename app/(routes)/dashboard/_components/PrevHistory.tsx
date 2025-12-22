@@ -10,16 +10,15 @@ const PrevHistory = () => {
 <Image   
 src="/pic.png"
 alt="icon"
-width={50}
+width={90}
 height={50}
 
 />
 
 
 <p>You do Not Have any history</p>
-<Button variant={"default"}  className='text-black w-40' asChild>
-        <Link href="/ai-chat"> start now </Link>
-    </Button>
+<Button variant={"default"}  className='text-white w-40' >
+    start now  </Button>
 
 
       </div>
