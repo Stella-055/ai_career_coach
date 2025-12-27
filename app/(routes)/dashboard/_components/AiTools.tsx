@@ -10,28 +10,28 @@ const aitools=[
         desc:"Ask career questions",
         icon:"/chatbot.png",
         button :"Lets chat",
-        path:"/ai-chat"
+        path:"/dashboard/ai-tools/ai-chat"
     },
     {
       name:"AI Resume Analyzer",
       desc:"Improve your resume",
       icon:"/resume.png",
       button :"Analyze Resume",
-      path:"/ai-resume"
+      path:"/dashboard/ai-tools/ai-resume"
   },
   {
     name:"Career Roadmap Generator",
     desc:"Build your career roadmap",
     icon:"/roadmap.png",
     button :"Generate Roadmap",
-    path:"/ai-roadmap"
+    path:"/dashboard/ai-tools/ai-roadmap"
 },
 {
   name:"Cover Letter Generator",
   desc:"Write a cover letter",
   icon:"/cover.png",
   button :"Generate Letter",
-  path:"/ai-coverletter"
+  path:"/dashboard/ai-tools/ai-coverletter"
 }
  ]
 
