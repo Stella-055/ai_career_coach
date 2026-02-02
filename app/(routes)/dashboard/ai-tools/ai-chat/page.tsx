@@ -4,10 +4,15 @@ import Aichat from '../../_components/Aichat';
 import { Input } from '@/components/ui/input';
 import { Send } from 'lucide-react';
 import { useState } from 'react';
-
+import axios from 'axios';
 
 const page = () => {
   const [userInput ,setUserInput]=useState<string>()
+  const sendChat= async()=>{
+    const result= await axios.post("/api/aicareer-chat-agent",{
+      userInput:userInput
+    })
+  }
   return (
     <div className='px-24 '>
     

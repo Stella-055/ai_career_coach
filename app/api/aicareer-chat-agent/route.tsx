@@ -1,7 +1,7 @@
 import { inngest } from "@/inngest/client";
-import request;
+import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-export async function POST(req:any){
+export async function POST(req:NextRequest){
  const{userInput}= await req.json()
  const resultIds= await inngest.send({
     name:"aicareeragent",

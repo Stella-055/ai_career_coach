@@ -2,6 +2,7 @@
  import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link'; 
+
 const aitools=[
 
 
@@ -37,7 +38,7 @@ const aitools=[
 
 const AiTools = () => {
   
-  
+ 
   
   return (
     <div className='p-5 bg-white rounded-lg shadow-md mx-6 mt-6'>
