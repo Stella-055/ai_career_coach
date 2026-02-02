@@ -5,13 +5,24 @@ import { Input } from '@/components/ui/input';
 import { Send } from 'lucide-react';
 import { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 const page = () => {
   const [userInput ,setUserInput]=useState<string>()
+  const [loading , setLoading]=useState(false)
   const sendChat= async()=>{
-    const result= await axios.post("/api/aicareer-chat-agent",{
-      userInput:userInput
-    })
+    setLoading(true)
+    try {
+      const result= await axios.post("/api/aicareer-chat-agent",{
+        userInput:userInput
+      })
+      setLoading(false)
+    } catch (error) {
+      toast.error(`${error}|| something went wrong`)
+      setLoading(false)
+    }
+
+   
   }
   return (
     <div className='px-24 '>
@@ -33,7 +44,7 @@ const page = () => {
         <div className='flex-1'></div>
         <div className='flex items-center gap-6 justify-center '>
           <Input placeholder='Type here' className='shadow-none' value={userInput}  onChange={(event)=>setUserInput(event?.target.value)}/>
-        <Button>
+        <Button onClick={sendChat} disabled={loading}>
         <Send/>
         </Button>
 
