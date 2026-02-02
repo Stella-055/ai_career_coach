@@ -6,12 +6,26 @@ import { Send } from 'lucide-react';
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'sonner';
-
+interface messageType{
+  title:string;
+  role:string;
+  content:string
+}
 const page = () => {
   const [userInput ,setUserInput]=useState<string>()
   const [loading , setLoading]=useState(false)
+  const [message,setMessage]=useState<messageType[]>([])
   const sendChat= async()=>{
+    if(!userInput){
+      toast.error("Type in the input box")
+      return
+    }
     setLoading(true)
+    setMessage( prev=>[...prev,{
+      title:"text",
+      role:"user",
+      content:userInput
+    }])
     try {
       const result= await axios.post("/api/aicareer-chat-agent",{
         userInput:userInput
