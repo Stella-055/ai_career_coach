@@ -1,5 +1,6 @@
 import { inngest } from "@/inngest/client";
 import request;
+import { NextResponse } from "next/server";
 export async function POST(req:any){
  const{userInput}= await req.json()
  const resultIds= await inngest.send({
@@ -18,6 +19,7 @@ export async function POST(req:any){
         setTimeout(resolve,500)
     })
  }
+ return NextResponse.json(resStatus)
 
 }
  async function getRuns(resultIds:string){
