@@ -8,7 +8,7 @@ const Aichat = ({selectedQuestion}:any) => {
       <h2 className=" font-bold">Ask anything to AI career Agent</h2>
      
         
-        <h3 onClick={()=>selectedQuestion(text1)} className=" p-2 border cursor-pointer w-full flex justify-center hover:border-4"> {text1}</h3>
+        <h3 onClick={()=>selectedQuestion(text1)} className=" p-2 border cursor-pointer w-full flex justify-center hover:border-primary"> {text1}</h3>
       <h3  onClick={()=>selectedQuestion(text2)}className="p-2 border cursor-pointer w-full flex justify-center hover:border-primary ">{text2}</h3>
     </div>
   )
