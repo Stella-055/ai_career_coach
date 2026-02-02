@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import Aichat from '../../_components/Aichat';
 import { Input } from '@/components/ui/input';
-import { Send } from 'lucide-react';
+import { LoaderCircle, Send } from 'lucide-react';
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'sonner';
@@ -14,7 +14,7 @@ interface messageType{
 const page = () => {
   const [userInput ,setUserInput]=useState<string>()
   const [loading , setLoading]=useState(false)
-  const [message,setMessage]=useState<messageType[]>([])
+  const [messages,setMessage]=useState<messageType[]>([])
   const sendChat= async()=>{
     if(!userInput){
       toast.error("Type in the input box")
@@ -55,9 +55,36 @@ const page = () => {
             </div> 
         </div>
 <div className='flex flex-col h-[75vh]'>
+  {messages.length==0 && <div> <Aichat  selectedQuestion= { (question:string)=>setUserInput(question)}/> </div>}
+        
+        <div className='flex-1'>
+        {messages?.map((message, index: number) => {
+  return (
+    <>
+    <div
+      key={index}
+      className={`flex mb-2 ${
+        message.role === "user" ? "justify-end" : "justify-start"
+      }`}
+    >
+      <div
+        className={`p-3 rounded-lg gap-2 ${
+          message.role === "user"
+            ? "bg-gray-200 text-black"
+            : "bg-gray-50 text-black"
+        }`}
+      >
+        {message.content}
+      </div>
+    </div>
+    {loading && messages.length == index && <div className=' flex justify-start'>
+     <LoaderCircle className='animate-spin'/>
+      
+      </div>} </>
+  );
+})}
 
-        <div> <Aichat  selectedQuestion= { (question:string)=>setUserInput(question)}/> </div>
-        <div className='flex-1'></div>
+        </div>
         <div className='flex items-center gap-6 justify-center '>
           <Input placeholder='Type here' className='shadow-none' value={userInput}  onChange={(event)=>setUserInput(event?.target.value)}/>
         <Button onClick={sendChat} disabled={loading}>
