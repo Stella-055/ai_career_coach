@@ -1,23 +1,40 @@
-
+"use client"
 import { Button } from '@/components/ui/button';
 import Aichat from '../../_components/Aichat';
+import { Input } from '@/components/ui/input';
+import { Send } from 'lucide-react';
+import { useState } from 'react';
 
 
 const page = () => {
+  const [userInput ,setUserInput]=useState<string>()
   return (
-    <div>
+    <div className='px-24 '>
     
-        <div>
-            <h2>AI Career Q/A Chat</h2>
-            <div className="flex">
-            <p>Smarter career decisions start here — get tailored advice, real-time market insights</p>
+        <div  className='flex justify-between '>
+          <div className=' flex flex-col'>
+          <h2 className='font-bold text-lg'>AI Career Q/A Chat</h2>
+          <p>Smarter career decisions start here — get tailored advice, real-time market insights</p>
+          </div>
+            
+            <div className="flex justify-end items-end">
+           
             <Button>New chat</Button>
-            </div>
+            </div> 
         </div>
+<div className='flex flex-col h-[75vh]'>
 
-        <div> <Aichat/> </div>
+        <div> <Aichat  selectedQuestion= { (question:string)=>setUserInput(question)}/> </div>
+        <div className='flex-1'></div>
+        <div className='flex items-center gap-6 justify-center '>
+          <Input placeholder='Type here' className='shadow-none' value={userInput}  onChange={(event)=>setUserInput(event?.target.value)}/>
+        <Button>
+        <Send/>
+        </Button>
+
+        </div>
       
-    </div>
+    </div> </div>
   )
 }
 
