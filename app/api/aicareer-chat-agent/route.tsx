@@ -8,5 +8,24 @@ export async function POST(req:any){
         userInput:userInput
     }
  })
+ let resStatus
+ while(true){
+    resStatus= await getRuns(resultIds.ids[0])
+    if(resStatus[0].status==="Completed"){
+        break;
+    }
+    await new Promise((resolve, reject) => {
+        setTimeout(resolve,500)
+    })
+ }
 
 }
+ async function getRuns(resultIds:string){
+    const response = await fetch(`https://api.inngest.com/v1/events/${resultIds}/runs`, {
+        headers: {
+          Authorization: `Bearer ${process.env.INNGEST_SIGNING_KEY}`,
+        },
+      });
+      const json = await response.json();
+      return json.data;
+ }
