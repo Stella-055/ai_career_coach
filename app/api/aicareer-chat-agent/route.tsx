@@ -19,10 +19,10 @@ export async function POST(req:NextRequest){
         setTimeout(resolve,500)
     })
  }
- return NextResponse.json(resStatus)
+ return NextResponse.json(resStatus.data[0].output.output[0])
 
 }
- async function getRuns(resultIds:string){
+ export async function getRuns(resultIds:string){
     const response = await fetch(`https://api.inngest.com/v1/events/${resultIds}/runs`, {
         headers: {
           Authorization: `Bearer ${process.env.INNGEST_SIGNING_KEY}`,
