@@ -2,7 +2,7 @@
  import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link'; 
-
+import { v4 as uuidv4 } from 'uuid';
 const aitools=[
 
 
@@ -38,7 +38,7 @@ const aitools=[
 
 const AiTools = () => {
   
- 
+ const id =uuidv4()
   
   return (
     <div className='p-5 bg-white rounded-lg shadow-md mx-6 mt-6'>
@@ -59,7 +59,7 @@ height={50}
 <h3 className=' font-semibold'>{tool.name}</h3>
 <p>{tool.desc}</p>
 <Button variant={"secondary"}  className='text-black' asChild>
-      <Link href={tool.path}>
+      <Link href={tool.path+ id}>
       {tool.button}
       </Link>
     </Button>

@@ -1,17 +1,21 @@
 "use client"
 import { Button } from '@/components/ui/button';
-import Aichat from '../../_components/Aichat';
+import Aichat from '../../../_components/Aichat';
 import { Input } from '@/components/ui/input';
 import { LoaderCircle, Send } from 'lucide-react';
 import { useState } from 'react';
 import axios from 'axios';
+import Markdown from 'react-markdown'
+
 import { toast } from 'sonner';
+import { useParams } from 'next/navigation';
 interface messageType{
   title:string;
   role:string;
   content:string
 }
 const page = () => {
+  const{id}=useParams()
   const [userInput ,setUserInput]=useState<string>()
   const [loading , setLoading]=useState(false)
   const [messages,setMessage]=useState<messageType[]>([])
@@ -21,6 +25,7 @@ const page = () => {
       return
     }
     setLoading(true)
+    setUserInput("")
     setMessage( prev=>[...prev,{
       title:"text",
       role:"user",
@@ -73,12 +78,12 @@ const page = () => {
             ? "bg-gray-200 text-black"
             : "bg-gray-50 text-black"
         }`}
-      >
-        {message.content}
+      > <Markdown >    {message.content}</Markdown>
+    
       </div>
     </div>
-    {loading && messages.length == index && <div className=' flex justify-start'>
-     <LoaderCircle className='animate-spin'/>
+    {loading && messages.length-1 == index && <div className=' flex justify-start'>
+     <LoaderCircle className='animate-spin'/>Thinking...
       
       </div>} </>
   );
