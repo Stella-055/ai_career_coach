@@ -3,6 +3,15 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link'; 
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+interface toolType{
+  name:string;
+  desc:string;
+  icon:string;
+  button:string;
+  path:string
+}
 const aitools=[
 
 
@@ -37,9 +46,17 @@ const aitools=[
  ]
 
 const AiTools = () => {
-  
+  const router= useRouter()
  const id =uuidv4()
-  
+ async  function createHistory  (tool:toolType){
+
+    const response= await axios.post("/api/history",{
+content:{},
+recordId:id
+
+    })
+    router.push(tool.path+"/"+id)
+  }
   return (
     <div className='p-5 bg-white rounded-lg shadow-md mx-6 mt-6'>
       <h2 className=' font-bold'>Available Ai Tools</h2>
@@ -58,10 +75,10 @@ height={50}
 
 <h3 className=' font-semibold'>{tool.name}</h3>
 <p>{tool.desc}</p>
-<Button variant={"secondary"}  className='text-black' asChild>
-      <Link href={tool.path+ id}>
+<Button variant={"secondary"}  className='text-black' asChild onClick={()=>createHistory(tool)}>
+     
       {tool.button}
-      </Link>
+   
     </Button>
 
 
