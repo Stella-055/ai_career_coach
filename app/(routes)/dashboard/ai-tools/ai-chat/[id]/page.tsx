@@ -6,7 +6,7 @@ import { LoaderCircle, Send } from 'lucide-react';
 import { useState } from 'react';
 import axios from 'axios';
 import Markdown from 'react-markdown'
-
+import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { useParams } from 'next/navigation';
 interface messageType{
@@ -45,6 +45,28 @@ const page = () => {
 
    
   }
+
+  useEffect(()=>{
+
+
+const sendContent= async ()=>{
+ const result= await axios.put("/api/aicareer-chat-agent",{
+  content:messages
+})
+}
+sendContent()
+  },[messages])
+
+  useEffect(()=>{
+
+
+    const fetchContent= async ()=>{
+     const result= await axios.put("/api/aicareer-chat-agent",{
+      content:messages
+    })
+    }
+    fetchContent()
+      },[])
   return (
     <div className='px-24 '>
     
