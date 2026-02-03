@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, userAgent } from "next/server";
 import { db } from "@/configs/db";
 import { userHistory } from "@/configs/schema";
 import { currentUser } from "@clerk/nextjs/server";
@@ -30,6 +30,22 @@ try {
       
     }).where(eq(userHistory.recordId,requestId))
     return NextResponse.json(result)
+} catch (error) {
+    return NextResponse.json(error)
+}
+
+}
+
+export async  function GET(req:NextRequest){
+
+    const {searchParams}= new URL (req.url)
+    const recordId= searchParams.get("recordId")
+try {
+    if(recordId){
+        const result= await db.select().from(userHistory).where(eq(userHistory.recordId,recordId))
+        return NextResponse.json(result[0])
+    }
+   else   return NextResponse.json({})
 } catch (error) {
     return NextResponse.json(error)
 }

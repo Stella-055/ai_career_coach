@@ -9,6 +9,8 @@ import Markdown from 'react-markdown'
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { useParams } from 'next/navigation';
+import { v4 as uuidv4 } from 'uuid';
+import { useRouter } from 'next/navigation';
 interface messageType{
   title:string;
   role:string;
@@ -16,6 +18,8 @@ interface messageType{
 }
 const page = () => {
   const{id}=useParams()
+  const router= useRouter()
+  const idd =uuidv4()
   const [userInput ,setUserInput]=useState<string>()
   const [loading , setLoading]=useState(false)
   const [messages,setMessage]=useState<messageType[]>([])
@@ -50,7 +54,8 @@ const page = () => {
 
 
 const sendContent= async ()=>{
- const result= await axios.put("/api/aicareer-chat-agent",{
+ const result= await axios.put("/api/history",{
+  recordId:id,
   content:messages
 })
 }
@@ -61,12 +66,24 @@ sendContent()
 
 
     const fetchContent= async ()=>{
-     const result= await axios.put("/api/aicareer-chat-agent",{
-      content:messages
-    })
+     const result= await axios.get(`/api/history?recordId=${id}`)
+     if(result.data.length >0){
+      setMessage(result.data.content)
+     }
     }
     fetchContent()
       },[])
+
+
+ async  function createHistory  (){
+
+    const response= await axios.post("/api/history",{
+content:{},
+recordId:idd
+
+    })
+    router.push("/dashboard/ai-tools/ai-chat/"+idd)
+  }
   return (
     <div className='px-24 '>
     
@@ -78,7 +95,7 @@ sendContent()
             
             <div className="flex justify-end items-end">
            
-            <Button>New chat</Button>
+            <Button onClick={createHistory}>New chat</Button>
             </div> 
         </div>
 <div className='flex flex-col h-[75vh]'>
@@ -100,7 +117,7 @@ sendContent()
             ? "bg-gray-200 text-black"
             : "bg-gray-50 text-black"
         }`}
-      > <Markdown >    {message.content}</Markdown>
+      > {message.content}
     
       </div>
     </div>
