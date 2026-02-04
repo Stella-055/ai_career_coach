@@ -1,10 +1,12 @@
-
+"use client"
  import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link'; 
 import { v4 as uuidv4 } from 'uuid';
+import ResumeUploadDialog from './resumeUploadDialog';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 interface toolType{
   name:string;
   desc:string;
@@ -48,7 +50,13 @@ const aitools=[
 const AiTools = () => {
   const router= useRouter()
  const id =uuidv4()
+ const[dialogOpen ,setDialogOpen]= useState(false)
  async  function createHistory  (tool:toolType){
+
+  if(tool.desc=="Improve your resume"){
+   setDialogOpen(true)
+   return
+  }
 
     const response= await axios.post("/api/history",{
 content:{},
@@ -75,7 +83,7 @@ height={50}
 
 <h3 className=' font-semibold'>{tool.name}</h3>
 <p>{tool.desc}</p>
-<Button variant={"secondary"}  className='text-black' asChild onClick={()=>createHistory(tool)}>
+<Button variant={"secondary"}  className='text-black' onClick={()=>createHistory(tool)}>
      
       {tool.button}
    
@@ -85,6 +93,7 @@ height={50}
       </div>
      ))}
 </div>
+<ResumeUploadDialog open={dialogOpen} setDialogOpen={setDialogOpen}/>
     </div>
   )
 }
