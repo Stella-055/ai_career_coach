@@ -15,6 +15,7 @@ import {
   import { v4 as uuid } from "uuid";
 import { File, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import axios from "axios";
 const ResumeUploadDialog = ({open,setDialogOpen}:{open:boolean;setDialogOpen:any}) => {
 
     const[file, setFile]=useState<any>()
@@ -29,6 +30,9 @@ const ResumeUploadDialog = ({open,setDialogOpen}:{open:boolean;setDialogOpen:any
     const formData= new FormData()
     formData.append("recordId",recordId)
     formData.append("resumeFile",file)
+    const results= await axios.post("/api/ai-resume-agent",
+    formData,
+    )
     }
   return (
     <AlertDialog open={open} onOpenChange={setDialogOpen}>
