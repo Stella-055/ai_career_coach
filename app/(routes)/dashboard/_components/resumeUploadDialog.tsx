@@ -13,19 +13,19 @@ import {
   import React, { ChangeEvent } from 'react';
   import { useState } from "react";
   import { v4 as uuid } from "uuid";
-import { File, Sparkles } from "lucide-react";
+import { File, Loader2Icon, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import axios from "axios";
 const ResumeUploadDialog = ({open,setDialogOpen}:{open:boolean;setDialogOpen:any}) => {
 
     const[file, setFile]=useState<any>()
-
+     const[loading,setLoading]=useState(false)
      async function upload(){
     if(!file){
         toast.error("upload Resume")
         return
     }
-
+   setLoading(true)
     const recordId = uuid()
     const formData= new FormData()
     formData.append("recordId",recordId)
@@ -33,6 +33,7 @@ const ResumeUploadDialog = ({open,setDialogOpen}:{open:boolean;setDialogOpen:any
     const results= await axios.post("/api/ai-resume-agent",
     formData,
     )
+    setLoading(false)
     }
   return (
     <AlertDialog open={open} onOpenChange={setDialogOpen}>
@@ -58,7 +59,10 @@ const ResumeUploadDialog = ({open,setDialogOpen}:{open:boolean;setDialogOpen:any
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction onClick={upload}> <Sparkles/>Upload & analyze</AlertDialogAction>
+        <AlertDialogAction onClick={upload}>
+          {loading? <Loader2Icon className="animate-spin"/>:<Sparkles/>}
+          {loading? "Loading...":"Upload & analyze"}
+           </AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
   </AlertDialog>

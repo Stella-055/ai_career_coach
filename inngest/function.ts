@@ -63,8 +63,12 @@ export const AiCareerAgent = inngest.createFunction(
             fileName:`${Date.now()}.pdf`,
             isPublished:true
           })
+          return imagekitfile.url
         })
-     const results= await AiResumeAnalyzerAgent.run(base64resumeFile,pdfText)
-      return results;
+     const results= await AiResumeAnalyzerAgent.run(pdfText)
+     //@ts-ignore
+     const reportOutput= results.output[0].content
+     const json=reportOutput.replace('```json','').replace('```','')
+      return JSON.parse(json);
     },
   );
