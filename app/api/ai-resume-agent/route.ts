@@ -1,13 +1,14 @@
 import { NextRequest,NextResponse } from "next/server";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf"
 import { inngest } from "@/inngest/client";
-
+import { currentUser } from "@clerk/nextjs/server";
 import { getRuns } from "../aicareer-chat-agent/route";
 
 
 export async function POST(req:NextRequest){
     try {
         const data = await req.formData()
+         const user = await  currentUser()
         const resumeFile:any= data.get("resumeFile")
         if(!resumeFile){
             return
@@ -22,7 +23,9 @@ export async function POST(req:NextRequest){
             name:"airesumeagent",
             data:{
                 base64resumeFile:base,
-                pdfText:docs[0]?.pageContent
+                pdfText:docs[0]?.pageContent,
+                recordId:recordId,
+                useremail:user?.primaryEmailAddress?.emailAddress,
             }
          })
          let resStatus

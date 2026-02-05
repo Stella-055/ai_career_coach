@@ -1,7 +1,8 @@
 import { inngest } from "./client";
 import { imagekit } from "@/lib/imagekit";
+import { db } from "@/configs/db";
+import { userHistory } from "@/configs/schema";
 import {
-  
     createAgent,
     gemini,
   } from "@inngest/agent-kit";
@@ -56,7 +57,7 @@ export const AiCareerAgent = inngest.createFunction(
     { id: "airesumeagent" },
     { event: "airesumeagent" },
     async ({ event, step }) => {
-        const{base64resumeFile,pdfText}=  await event.data
+        const{base64resumeFile,pdfText,recordId,useremail}=  await event.data
         const uploadurl= await step.run("uploadImage", async()=>{
           const imagekitfile= await imagekit.upload({
             file:base64resumeFile,
@@ -69,6 +70,17 @@ export const AiCareerAgent = inngest.createFunction(
      //@ts-ignore
      const reportOutput= results.output[0].content
      const json=reportOutput.replace('```json','').replace('```','')
-      return JSON.parse(json);
+
+const parsedJson=JSON.parse(json);
+     await step.run("uploadtoDb",async()=>{
+const result= await db.insert(userHistory).values({
+
+        recordId:recordId,
+        content:parsedJson,
+        useremail:useremail,
+        createdAt:(new Date()).toString()
+    })
+     })
+      return parsedJson;
     },
   );
