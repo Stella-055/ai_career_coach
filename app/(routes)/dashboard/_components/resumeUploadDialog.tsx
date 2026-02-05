@@ -11,13 +11,14 @@ import {
   
   } from "@/components/ui/alert-dialog"
   import React, { ChangeEvent } from 'react';
+  import { useRouter } from "next/navigation";
   import { useState } from "react";
   import { v4 as uuid } from "uuid";
 import { File, Loader2Icon, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import axios from "axios";
 const ResumeUploadDialog = ({open,setDialogOpen}:{open:boolean;setDialogOpen:any}) => {
-
+ const router = useRouter()
     const[file, setFile]=useState<any>()
      const[loading,setLoading]=useState(false)
      async function upload(){
@@ -33,8 +34,9 @@ const ResumeUploadDialog = ({open,setDialogOpen}:{open:boolean;setDialogOpen:any
     const results= await axios.post("/api/ai-resume-agent",
     formData,
     )
-    
+
     setLoading(false)
+   router.push(`/dashboard/resume-analyzer/${recordId}`)
     }
   return (
     <AlertDialog open={open} onOpenChange={setDialogOpen}>
