@@ -78,6 +78,7 @@ const result= await db.insert(userHistory).values({
         recordId:recordId,
         content:parsedJson,
         useremail:useremail,
+        clouldpdfurl:uploadurl,
         createdAt:(new Date()).toString()
     })
      })
