@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest,NextResponse } from "next/server";
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf"
 import { inngest } from "@/inngest/client";
 
@@ -19,9 +19,8 @@ export async function POST(req:NextRequest){
         const base = Buffer.from(arrayBuffer).toString("base64")
 
         const resultIds= await inngest.send({
-            name:"aicareeragent",
+            name:"airesumeagent",
             data:{
-                resumeFile:resumeFile,
                 base64resumeFile:base,
                 pdfText:docs[0]?.pageContent
             }
@@ -36,8 +35,10 @@ export async function POST(req:NextRequest){
                 setTimeout(resolve,500)
             })
          }
+
+          return NextResponse.json(resStatus.data[0].output.output[0])
     } catch (error) {
-        
+        return NextResponse.json(error)
     }
  
 
