@@ -9,9 +9,11 @@ export async function POST(req:NextRequest){
         userInput:userInput
     }
  })
+ console.log(resultIds)
  let resStatus
  while(true){
     resStatus= await getRuns(resultIds.ids[0])
+    console.log(resStatus)
     if(resStatus[0].status==="Completed"){
         break;
     }
@@ -23,7 +25,7 @@ export async function POST(req:NextRequest){
 
 }
  export async function getRuns(resultIds:string){
-    const response = await fetch(`https://api.inngest.com/v1/events/${resultIds}/runs`, {
+    const response = await fetch(`${process.env.INNGEST_PORT_NAME}/v1/events/${resultIds}/runs`, {
         headers: {
           Authorization: `Bearer ${process.env.INNGEST_SIGNING_KEY}`,
         },

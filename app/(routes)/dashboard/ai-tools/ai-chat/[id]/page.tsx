@@ -39,7 +39,7 @@ const page = () => {
       const result= await axios.post("/api/aicareer-chat-agent",{
         userInput:userInput
       })
-
+      console.log(result.data)
       setLoading(false)
       setMessage( prev=>[...prev,result.data])
     } catch (error) {
@@ -98,10 +98,10 @@ recordId:idd
             <Button onClick={createHistory}>New chat</Button>
             </div> 
         </div>
-<div className='flex flex-col h-[75vh]'>
+<div className='flex flex-col h-[75vh] mb-1.5 '>
   {messages.length==0 && <div> <Aichat  selectedQuestion= { (question:string)=>setUserInput(question)}/> </div>}
         
-        <div className='flex-1'>
+        <div className='flex-1 '>
         {messages?.map((message, index: number) => {
   return (
     <>
