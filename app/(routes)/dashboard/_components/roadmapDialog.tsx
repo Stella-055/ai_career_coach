@@ -21,8 +21,8 @@ const RoadmapDialog = ({roadmap,setRoadmapDialogOpen}:{roadmap:boolean;setRoadma
         <AlertDialogHeader>
           <AlertDialogTitle>Enter position/skills to generate Roadmap</AlertDialogTitle>
           <AlertDialogDescription>
-            <div>
-                <input type="text" placeholder="Eg.Fullstack developer" />
+            <div className="w-full  ">
+                <input className="border rounded-md w-full p-1.5" type="text" placeholder="Eg.Fullstack developer" />
             </div>
           </AlertDialogDescription>
         </AlertDialogHeader>
