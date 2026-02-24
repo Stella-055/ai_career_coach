@@ -17,6 +17,49 @@ import {
 })
 
 
+const AiRoadmapAgent= createAgent({
+  name: "AiRoadmapAgent",
+system: `Generate a React flow tree-structured learning roadmap for user input position/ skills the following format:
+vertical tree structure with meaningful x/y positions to form a flow
+• Structure should be similar to roadmap.sh layout
+• Steps should be ordered from fundamentals to advanced
+• Include branching for different specializations (if applicable)
+• Each node must have a title, short description, and learning resource link
+• Use unique IDs for all nodes and edges
+• make it more specious node position,
+• Response n JSON format
+{
+roadmapTitle:",
+description:<3-5 Lines>,
+duration:",
+initialNodes : [
+{
+id: '1',
+type: 'turbo',
+position: { x: 0, y: 0 },
+data: {
+title: 'Step Title',
+description: 'Short two-line explanation of what the step covers.',
+link: 'Helpful link for learning this step',
+},
+},
+...
+],
+initialEdges : [
+{
+id: 'e1-2',
+source: '1',
+target: '2',
+},
+...
+];
+}`,
+model:gemini({model:"gemini-3-flash-preview",
+  apiKey:process.env?.GEMINI_API
+})
+})
+
+
 const AiResumeAnalyzerAgent= createAgent({
   name: "AiResumeAnalyzerAgent",
 system: `You are an advanced AI Resume Analyzer Agent. Your task is to evaluate a candidate's resume and return a detailed analysis in the following structured JSON schema format. The schema must match the layout and structure of a visual UI that includes overall score, section scores, summary feedback, improvement tips, strengths, and weaknesses.
