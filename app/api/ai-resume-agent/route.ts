@@ -31,7 +31,7 @@ export async function POST(req:NextRequest){
          let resStatus
          while(true){
             resStatus= await getRuns(resultIds.ids[0])
-            if(resStatus[0].status==="Completed"){
+            if(resStatus[0].Status==="Completed"){
                 break;
             }
             await new Promise((resolve, reject) => {

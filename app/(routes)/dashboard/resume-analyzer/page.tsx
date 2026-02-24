@@ -4,7 +4,7 @@ import { useParams } from "next/navigation"
 const page = () => {
 const [pdfurl,setPdfurl]=useState("")
 const{recordId}=useParams()
-const [airesponse, setAiresponse]=useState()
+const [airesponse, setAiresponse]=useState<any>()
      useEffect(()=>{
     
     
@@ -33,16 +33,16 @@ const [airesponse, setAiresponse]=useState()
     <i className="fas fa-star text-yellow-500 mr-2"></i> Overall Score
   </h3>
   <div className="flex items-center justify-between mb-4">
-    <span className="text-6xl font-extrabold text-blue-600">85<span className="text-2xl">/100</span></span>
+    <span className="text-6xl font-extrabold text-blue-600">{airesponse?.overall_score}<span className="text-2xl">/100</span></span>
     <div className="flex items-center">
       <i className="fas fa-arrow-up text-green-500 text-lg mr-2"></i>
-      <span className="text-green-500 text-lg font-bold">Excellent!</span>
+      <span className="text-green-500 text-lg font-bold">{airesponse?.overall_feedback }</span>
     </div>
   </div>
   <div className="w-full bg-gray-200 rounded-full h-2.5 mb-4">
     <div className="bg-blue-600 h-2.5 rounded-full" ></div>
   </div>
-  <p className="text-gray-600 text-sm">Your resume is strong, but there are areas to refine. </p>
+  <p className="text-gray-600 text-sm">{airesponse.summary_comment}</p>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
