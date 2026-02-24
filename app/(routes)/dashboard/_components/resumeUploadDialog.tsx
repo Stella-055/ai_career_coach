@@ -47,7 +47,7 @@ const ResumeUploadDialog = ({open,setDialogOpen}:{open:boolean;setDialogOpen:any
          <div>
             <label htmlFor="dialogform" className="flex items-center flex-col cursor-pointer justify-center p-7 rounded-xl border border-dashed">
                 <File className="h-10 w-10"/>
-                {file?<h2 className="mt-3 text-blue-600">{file.name}</h2>:  <h2 className="mt-3">Click here to upload PDF file</h2>}
+                {file?<h2 className="mt-3 text-blue-600">{file.name}</h2>:(  <h2 className="mt-3">Click here to upload PDF file</h2>)}
               
             </label>
             <input type="file" accept="application/pdf" id="dialogform" className="opacity-0" onChange={(event:ChangeEvent<HTMLInputElement>)=>{

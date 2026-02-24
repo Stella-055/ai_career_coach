@@ -7,6 +7,7 @@ import ResumeUploadDialog from './resumeUploadDialog';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import RoadmapDialog from './roadmapDialog';
 interface toolType{
   name:string;
   desc:string;
@@ -51,13 +52,18 @@ const AiTools = () => {
   const router= useRouter()
  const id =uuidv4()
  const[dialogOpen ,setDialogOpen]= useState(false)
+ const [roadmapDialogOpen,setRoadmapDialogOpen]= useState(false)
  async  function createHistory  (tool:toolType){
 
   if(tool.desc=="Improve your resume"){
    setDialogOpen(true)
    return
   }
-
+  if(tool.desc=="Build your career roadmap"){
+    setRoadmapDialogOpen(true)
+    return
+   }
+ 
     const response= await axios.post("/api/history",{
 content:{},
 recordId:id
@@ -94,6 +100,7 @@ height={50}
      ))}
 </div>
 <ResumeUploadDialog open={dialogOpen} setDialogOpen={setDialogOpen}/>
+<RoadmapDialog  roadmap={roadmapDialogOpen} setRoadmapDialogOpen={setRoadmapDialogOpen}/>
     </div>
   )
 }
