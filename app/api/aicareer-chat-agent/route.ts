@@ -2,6 +2,9 @@ import { inngest } from "@/inngest/client";
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 export async function POST(req:NextRequest){
+    try {
+        
+  
  const{userInput}= await req.json()
  const resultIds= await inngest.send({
     name:"aicareeragent",
@@ -22,6 +25,9 @@ export async function POST(req:NextRequest){
     })
  }
  return NextResponse.json(resStatus.data[0].output.output[0])
+} catch (error) {
+    return NextResponse.json(error)  
+}
 
 }
  export async function getRuns(resultIds:string){

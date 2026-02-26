@@ -133,8 +133,19 @@ const result= await db.insert(userHistory).values({
     { id: "airoadmapagent" },
     { event: "airoadmapagent" },
     async ({ event, step }) => {
-        const{userInput}=  await event.data
-     const results= await AiRoadmapAgent.run(userInput)
+        const{userInput,userEmail, roadmapId}=  await event.data
+     const results= await AiRoadmapAgent.run("user input:",userInput)
+     await step.run("uploadtoDb",async()=>{
+      const result= await db.insert(userHistory).values({
+      
+              recordId:roadmapId,
+              content:results,
+              useremail:userEmail,
+              
+              createdAt:(new Date()).toString()
+          })
+           })
+
       return results;
     },
   );
