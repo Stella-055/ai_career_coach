@@ -95,7 +95,7 @@ export const AiCareerAgent = inngest.createFunction(
       return results;
     },
   );
-
+  
   export const AiResumeAgent = inngest.createFunction(
     { id: "airesumeagent" },
     { event: "airesumeagent" },
@@ -126,5 +126,15 @@ const result= await db.insert(userHistory).values({
     })
      })
       return parsedJson;
+    },
+  );
+
+  export const AiroadmapAgent = inngest.createFunction(
+    { id: "airoadmapagent" },
+    { event: "airoadmapagent" },
+    async ({ event, step }) => {
+        const{userInput}=  await event.data
+     const results= await AiRoadmapAgent.run(userInput)
+      return results;
     },
   );
