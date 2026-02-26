@@ -39,6 +39,11 @@ const page = () => {
       const result= await axios.post("/api/aicareer-chat-agent",{
         userInput:userInput
       })
+      if(result.data.error){
+        toast.error(result.data.error)
+        setLoading(false)
+        return
+      }
       console.log(result.data)
       setLoading(false)
       setMessage( prev=>[...prev,result.data])
