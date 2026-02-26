@@ -116,7 +116,7 @@ export const AiCareerAgent = inngest.createFunction(
 
 const parsedJson=JSON.parse(json);
      await step.run("uploadtoDb",async()=>{
-const result= await db.insert(userHistory).values({
+ await db.insert(userHistory).values({
 
         recordId:recordId,
         content:parsedJson,
@@ -135,17 +135,23 @@ const result= await db.insert(userHistory).values({
     async ({ event, step }) => {
         const{userInput,userEmail, roadmapId}=  await event.data
      const results= await AiRoadmapAgent.run("user input:",userInput)
+     console.log(results)
+      //@ts-ignore
+      const reportOutput= results.output[0].content
+      const json=reportOutput.replace('```json','').replace('```','')
+ 
+ const parsedJson=JSON.parse(json);
      await step.run("uploadtoDb",async()=>{
       const result= await db.insert(userHistory).values({
       
               recordId:roadmapId,
-              content:results,
+              content:parsedJson,
               useremail:userEmail,
-              
+              clouldpdfurl:'',
               createdAt:(new Date()).toString()
           })
            })
 
-      return results;
+      return parsedJson;
     },
   );
