@@ -1,21 +1,37 @@
 import { useState, useCallback } from 'react';
 import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, Controls, MiniMap, Background } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import TurboNode from './TurboNode';
  
+const nodeTypes={
+    turbo:TurboNode
+}
+interface initialNodesProps{
+    id:string;
+    position:{
+        x:number;
+        y:number
+    };
+    data:{
+        label:string
+    }
+}
+interface initialEdgesProps{
+    id:string;
+    source:string;
+    target:string
+}
 
-export default function Reactflow() {
-    const initialNodes = [
-        { id: 'n1', position: { x: 0, y: 0 }, data: { label: 'Node 1' } },
-        { id: 'n2', position: { x: 0, y: 100 }, data: { label: 'Node 2' } },
-      ];
-      const initialEdges = [{ id: 'n1-n2', source: 'n1', target: 'n2' }];
+   
+export default function Reactflow({initalNodes,initalEdges}:{initalNodes:initialNodesProps[],initalEdges:initialEdgesProps[]}) {
+   
        
   return (
     <div style={{ width: '100%', height: '100%' }}>
       <ReactFlow
-        nodes={initialNodes}
-        edges={initialEdges}
-        
+        nodes={initalNodes}
+        edges={initalEdges}
+        nodeTypes={nodeTypes}
         fitView>
              <Controls/>
              <MiniMap/>

@@ -30,7 +30,7 @@ const page = () => {
             <Button className='w-full mt-5'>+create new Roadmap</Button>
         </div>
         <div className='md:col-span-2 w-[80vh]'>
-          <Reactflow/>
+          <Reactflow initalEdges={airesponse?.initialEdges} initalNodes={airesponse?.initialNodes}/>
         </div>
     </div>
   )
