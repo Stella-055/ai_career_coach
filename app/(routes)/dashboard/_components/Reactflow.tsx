@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge } from '@xyflow/react';
+import { ReactFlow, applyNodeChanges, applyEdgeChanges, addEdge, Controls, MiniMap, Background } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
  
 
@@ -16,8 +16,12 @@ export default function Reactflow() {
         nodes={initialNodes}
         edges={initialEdges}
         
-        fitView
-      />
+        fitView>
+             <Controls/>
+             <MiniMap/>
+            { /*@ts-ignore*/}
+             <Background variant='dots' gap={12} size={1}/>
+        </ReactFlow>
     </div>
   );
 }
