@@ -29,7 +29,7 @@ const page = () => {
             <h2 className='mt-5 font-medium'>Duration: {airesponse?.duration}</h2>
             <Button className='w-full mt-5'>+create new Roadmap</Button>
         </div>
-        <div className='md:grid-cols-2'>
+        <div className='md:col-span-2 w-[80vh]'>
           <Reactflow/>
         </div>
     </div>

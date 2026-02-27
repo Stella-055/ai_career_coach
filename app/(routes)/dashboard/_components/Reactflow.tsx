@@ -11,7 +11,7 @@ export default function Reactflow() {
       const initialEdges = [{ id: 'n1-n2', source: 'n1', target: 'n2' }];
        
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+    <div style={{ width: '100%', height: '100%' }}>
       <ReactFlow
         nodes={initialNodes}
         edges={initialEdges}
