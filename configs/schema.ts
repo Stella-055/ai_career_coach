@@ -11,5 +11,6 @@ export const userHistory = pgTable("userHistory", {
    content:json(),
     useremail: varchar({ length: 255 }).references(()=>usersTable.email),
     createdAt:varchar(),
+    agentType:varchar(),
     clouldpdfurl:varchar()
 });

@@ -15,7 +15,7 @@ interface toolType{
   button:string;
   path:string
 }
-const aitools=[
+export const aitools=[
 
 
     {

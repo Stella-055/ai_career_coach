@@ -122,6 +122,7 @@ const parsedJson=JSON.parse(json);
         content:parsedJson,
         useremail:useremail,
         clouldpdfurl:uploadurl,
+        agentType:"AI Resume Analyzer",
         createdAt:(new Date()).toString()
     })
      })
@@ -148,6 +149,7 @@ const parsedJson=JSON.parse(json);
               content:parsedJson,
               useremail:userEmail,
               clouldpdfurl:'',
+              agentType:"Career Roadmap Generator",
               createdAt:(new Date()).toString()
           })
            })
