@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Button } from '@/components/ui/button'
 import { useEffect,useState } from 'react'
 import { useParams } from 'next/navigation'
+import Reactflow from '../../_components/Reactflow'
 
 const page = () => {
     const {recordId}= useParams()
@@ -28,7 +29,9 @@ const page = () => {
             <h2 className='mt-5 font-medium'>Duration: {airesponse?.duration}</h2>
             <Button className='w-full mt-5'>+create new Roadmap</Button>
         </div>
-        <div className='md:grid-cols-2'></div>
+        <div className='md:grid-cols-2'>
+          <Reactflow/>
+        </div>
     </div>
   )
 }
