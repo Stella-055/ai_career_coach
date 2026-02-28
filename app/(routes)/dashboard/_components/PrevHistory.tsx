@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import axios from "axios"
 import { Link } from "lucide-react"
@@ -44,7 +45,7 @@ height={50}
       <div>
         {history.map((h:any,index:number)=>{
 <div key={index} className="flex justify-between my-3 items-center border p-3 rounded-lg ">
-  <Link href={getAgent(h.agentType)?.path+h.recordId}>
+  <Link href={getAgent(h.agentType)?.path+"/"+h.recordId}>
   <div>
 <Image   
 src={getAgent(h.agentType)?.icon || ""}

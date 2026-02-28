@@ -93,7 +93,7 @@ recordId:idd
     <div className='px-24 '>
     
         <div  className='flex justify-between '>
-          <div className=' flex flex-col'>
+          <div className=' flex flex-col mb-6'>
           <h2 className='font-bold text-lg'>AI Career Q/A Chat</h2>
           <p>Smarter career decisions start here — get tailored advice, real-time market insights</p>
           </div>
@@ -106,7 +106,7 @@ recordId:idd
 <div className='flex flex-col h-[75vh] mb-1.5 '>
   {messages.length==0 && <div> <Aichat  selectedQuestion= { (question:string)=>setUserInput(question)}/> </div>}
         
-        <div className='flex-1 '>
+        <div className='flex-1 mt-3 '>
         {messages?.map((message, index: number) => {
   return (
     <>
