@@ -5,7 +5,9 @@ import { Input } from '@/components/ui/input';
 import { LoaderCircle, Send } from 'lucide-react';
 import { useState } from 'react';
 import axios from 'axios';
-import Markdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown';
+
+
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { useParams } from 'next/navigation';
@@ -122,7 +124,9 @@ recordId:idd
             ? "bg-gray-200 text-black"
             : "bg-gray-50 text-black"
         }`}
-      > {message.content}
+      >
+     
+      <ReactMarkdown>{message.content}</ReactMarkdown>
     
       </div>
     </div>
