@@ -35,7 +35,6 @@ const router= useRouter()
 
    console.log(result.data)
    setLoading(false)
-   setRoadmapDialogOpen(false)
  router.push(`/dashboard/roadmap/${roadmapId}`)
   }
   return (
