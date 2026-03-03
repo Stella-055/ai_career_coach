@@ -5,12 +5,14 @@ import { currentUser } from "@clerk/nextjs/server";
 import { desc, eq } from "drizzle-orm";
 export async  function POST(req:NextRequest){
     const{content, requestId}= await req.json()
+    console.log("history being created with content:", content, "and requestId:", requestId)
     const user = await  currentUser()
 try {
     const result= await db.insert(userHistory).values({
 
         recordId:requestId,
         content:content,
+        agentType:"AI Career Q&A Chatbot",
         useremail:user?.primaryEmailAddress?.emailAddress,
         createdAt:(new Date()).toString()
     })
@@ -23,7 +25,7 @@ try {
 
 export async  function PUT(req:NextRequest){
     const{content,requestId}= await req.json()
- 
+
 try {
     const result= await db.update(userHistory).set({
         content:content,

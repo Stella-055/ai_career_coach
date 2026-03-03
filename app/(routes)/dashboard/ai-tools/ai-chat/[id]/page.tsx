@@ -53,16 +53,13 @@ const page = () => {
       toast.error(`${error}|| something went wrong`)
       setLoading(false)
     }
-
    
   }
 
-  useEffect(()=>{
-
-
+useEffect(()=>{
 const sendContent= async ()=>{
  const result= await axios.put("/api/history",{
-  recordId:id,
+  requestId:id,
   content:messages
 })
 }
@@ -70,8 +67,6 @@ sendContent()
   },[messages])
 
   useEffect(()=>{
-
-
     const fetchContent= async ()=>{
      const result= await axios.get(`/api/history?recordId=${id}`)
      if(result.data.length >0){
@@ -81,16 +76,6 @@ sendContent()
     fetchContent()
       },[])
 
-
- async  function createHistory  (){
-
-    const response= await axios.post("/api/history",{
-content:{},
-recordId:idd
-
-    })
-    router.push("/dashboard/ai-tools/ai-chat/"+idd)
-  }
   return (
     <div className='px-24 '>
     
@@ -102,7 +87,11 @@ recordId:idd
             
             <div className="flex justify-end items-end">
            
-            <Button onClick={createHistory}>New chat</Button>
+            <Button onClick={async ()=>{await axios.post("/api/history",{
+content:{},
+requestId:idd
+    })
+    router.push("/dashboard/ai-tools/ai-chat/"+idd)}}>New chat</Button>
             </div> 
         </div>
 <div className='flex flex-col h-[75vh] mb-1.5 '>
